@@ -21,7 +21,7 @@ if (Test-Path -Path $archivePath) {
     $drives = Get-Volume | Where-Object { $_.DriveLetter } | Select-Object DriveLetter, FileSystemLabel
 
     if (-not $drives) {
-        Write-Host "❌ No available drives found for copying."
+        Write-Host "Error: No available drives found for copying."
         exit
     }
 
@@ -48,15 +48,15 @@ if (Test-Path -Path $archivePath) {
             Copy-Item -Path $archivePath -Destination $destinationPath -Force
 
             if (Test-Path -Path $destinationPath) {
-                Write-Host "`n✅ Archive successfully copied to drive ${letter}:"
+                Write-Host "`nSuccess: Archive successfully copied to drive ${letter}:"
             } else {
-                Write-Host "`n⚠️ Failed to copy the archive to drive ${letter}:"
+                Write-Host "`nWarning: Failed to copy the archive to drive ${letter}:"
             }
             break
         } else {
-            Write-Host "❌ Invalid drive. Please choose one of the available drives."
+            Write-Host "Error: Invalid drive. Please choose one of the available drives."
         }
     }
 } else {
-    Write-Host "❌ Failed to create archive!"
+    Write-Host "Error: Failed to create archive!"
 }
